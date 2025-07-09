@@ -1,9 +1,13 @@
 package pageObjects;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class MensOuterwearPage {
@@ -16,11 +20,13 @@ public class MensOuterwearPage {
 		//PageFactory.initElements(driver, this);
 	}
 	public  void selectMensWear() {
-		WebElement shadowHost = driver.findElement(By.cssSelector("shop-app"));	
-		SearchContext shadowRoot = shadowHost.getShadowRoot();
-		WebElement appHeader = shadowRoot.findElement(By.cssSelector("app-header"));
-		SearchContext shpTabs = appHeader.findElement(By.cssSelector("shop-tabs"));
-		WebElement mensOutwearHeader = shpTabs.findElement(By.linkText("Men's Outerwear"));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		 WebElement shopApp = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("shop-app")));
+		//WebElement shadowHost = driver.findElement(By.cssSelector("shop-app"));	
+		SearchContext shadowRoot = shopApp.getShadowRoot();
+		WebElement appHeader = wait.until(driver -> shadowRoot.findElement(By.cssSelector("app-header")));
+		SearchContext shpTabs =  wait.until(driver ->appHeader.findElement(By.cssSelector("shop-tabs")));
+		WebElement mensOutwearHeader =  wait.until(driver ->shpTabs.findElement(By.linkText("Men's Outerwear")));
 		mensOutwearHeader.click();
 		
 		
