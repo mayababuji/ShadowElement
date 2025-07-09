@@ -17,22 +17,17 @@ public class AddToCart {
 		
 	}
 	public  String addToCart() {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(50));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		//click on Men's Tech Shell Full-Zip
-				WebElement link = (WebElement) js.executeScript(
+				WebElement link = wait.until(driver1 -> (WebElement) js.executeScript(
 				    "return document.querySelector('shop-app').shadowRoot.querySelector('iron-pages').querySelector('shop-list').shadowRoot.querySelector('ul.grid li a');"
-				);
+				));
 				link.click();
 				
 
 		//add to cart Men's Tech Shell Full-Zip
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(50));
+		//WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(50));
 		WebElement addcart = (WebElement) js.executeScript("return document.querySelector('shop-app').shadowRoot.querySelector('iron-pages').querySelector('shop-detail').shadowRoot.querySelector('button[aria-label=\"Add this item to cart\"]')");
 		wait.until(ExpectedConditions.elementToBeClickable(addcart)).click();
 		//This is a Java Lambda Expression.
