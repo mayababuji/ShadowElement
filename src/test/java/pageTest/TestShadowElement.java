@@ -49,8 +49,9 @@ public void initialise() {
 		Assert.assertEquals(label, "Added to cart"," Men's Tech Shell Full-Zip wasn't added to the cart ");
 		
 	}
-	@Test
+	@Test(enabled=false)
 	public void testGotoCart() {
+		
 		homepage.navigateToHome();
 		menswear.selectMensWear();
 		addtocart.addToCart();

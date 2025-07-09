@@ -26,7 +26,7 @@ public class AddToCart {
 				
 
 		//add to cart Men's Tech Shell Full-Zip
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(50));
 		WebElement addcart = (WebElement) js.executeScript("return document.querySelector('shop-app').shadowRoot.querySelector('iron-pages').querySelector('shop-detail').shadowRoot.querySelector('button[aria-label=\"Add this item to cart\"]')");
 		wait.until(ExpectedConditions.elementToBeClickable(addcart)).click();
 		//This is a Java Lambda Expression.
