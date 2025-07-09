@@ -15,16 +15,16 @@ public class Checkout {
 		this.driver = driver;
 	}
 	public void checkout() {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(50));
 
 		 WebElement shopApp = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("shop-app")));
 	        SearchContext shopAppShadow = shopApp.getShadowRoot();
-	        WebElement ironPages =  shopAppShadow.findElement(By.cssSelector("iron-pages"));
-	        WebElement shopCart = ironPages.findElement(By.cssSelector("shop-cart"));
+	        WebElement ironPages =  wait.until(driver -> shopAppShadow.findElement(By.cssSelector("iron-pages")));
+	        WebElement shopCart = wait.until(driver -> ironPages.findElement(By.cssSelector("shop-cart")));
 	        SearchContext shopCartShadow = shopCart.getShadowRoot();
-	        WebElement shopButton = shopCartShadow.findElement(By.cssSelector("shop-button"));
-	        WebElement checkout = shopButton.findElement(By.cssSelector("a[href=\"/checkout\"]"));
+	        WebElement shopButton = wait.until(driver -> shopCartShadow.findElement(By.cssSelector("shop-button")));
+	        WebElement checkout = wait.until(driver -> shopButton.findElement(By.cssSelector("a[href=\"/checkout\"]")));
 	        checkout.click();
 	}
-
+	
 }

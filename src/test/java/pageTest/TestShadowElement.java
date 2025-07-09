@@ -49,7 +49,7 @@ public void initialise() {
 		Assert.assertEquals(label, "Added to cart"," Men's Tech Shell Full-Zip wasn't added to the cart ");
 		
 	}
-	@Test(enabled=false)
+	@Test
 	public void testGotoCart() {
 		
 		homepage.navigateToHome();
